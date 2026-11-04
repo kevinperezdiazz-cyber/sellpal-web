@@ -1,0 +1,18 @@
+Cambios realizados
+==================
+
+1) SEGURIDAD UI - se quitaron accesos públicos al panel admin:
+   - index.html: badge "Acceso Admin" del top bar
+   - index.html: botón "Ir al Panel Administrativo" del footer
+   - pages/catalogo.html, carrito.html, pedidos.html, perfil.html: badge "Panel Admin"
+
+   Cómo entra el admin ahora:
+   - Solo con login (carlos.morales@invercajas.com / admin123)
+   - El menú de usuario muestra "Panel Admin" únicamente si el rol es admin (auth.js)
+
+2) ESTADO DE PEDIDO sincronizado cliente ↔ admin:
+   - Backend: PUT /api/pedidos/{id}/estado  body: { "estado": "Entregado" }
+   - PedidoService.actualizarEstado(...)
+   - api.js updatePedidoEstado() ahora llama al PUT real (antes solo hacía console.warn)
+
+Reinicia Spring Boot después de reemplazar el proyecto.
